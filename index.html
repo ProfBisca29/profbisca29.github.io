@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarem Mahmood - Cybersecurity Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --neon-cyan: #00d4ff;
+            --neon-green: #39ff14;
+            --dark-bg: #0a0e27;
+            --darker-bg: #050810;
+            --card-bg: #1a1f3a;
+            --text-light: #e0e0e0;
+            --text-bright: #ffffff;
+            --accent: #00d4ff;
+        }
+
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background grid */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(0deg, transparent 24%, rgba(0, 212, 255, 0.05) 25%, rgba(0, 212, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 212, 255, 0.05) 75%, rgba(0, 212, 255, 0.05) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(0, 212, 255, 0.05) 25%, rgba(0, 212, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 212, 255, 0.05) 75%, rgba(0, 212, 255, 0.05) 76%, transparent 77%, transparent);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            border-bottom: 2px solid var(--neon-cyan);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+            margin-bottom: 60px;
+            background: rgba(10, 14, 39, 0.8);
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        h1 {
+            font-size: 3.5em;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.8), 0 0 40px rgba(0, 212, 255, 0.4);
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: var(--neon-green);
+            text-shadow: 0 0 10px rgba(57, 255, 20, 0.6);
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            font-size: 0.95em;
+        }
+
+        .contact-info a {
+            color: var(--accent);
+            text-decoration: none;
+            border: 1px solid var(--accent);
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .contact-info a:hover {
+            background: var(--accent);
+            color: var(--darker-bg);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+        }
+
+        /* About Section */
+        .about {
+            background: var(--card-bg);
+            padding: 40px;
+            margin-bottom: 60px;
+            border: 1px solid var(--neon-cyan);
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .about h2, .section-title {
+            font-size: 2em;
+            color: var(--neon-green);
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .about p {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: var(--text-light);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Projects Section */
+        .projects {
+            margin-bottom: 60px;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 2px solid var(--neon-cyan);
+            padding: 25px;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s;
+            cursor: pointer;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            transition: all 0.4s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 40px rgba(0, 212, 255, 0.6), 0 0 60px rgba(0, 212, 255, 0.3);
+            border-color: var(--neon-green);
+        }
+
+        .project-card:hover::before {
+            top: 0;
+            left: 0;
+        }
+
+        .project-name {
+            font-size: 1.4em;
+            color: var(--neon-cyan);
+            margin-bottom: 12px;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-desc {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 0.95em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tech-tag {
+            background: rgba(0, 212, 255, 0.2);
+            color: var(--neon-cyan);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            border: 1px solid var(--neon-cyan);
+        }
+
+        .project-link {
+            display: inline-block;
+            color: var(--neon-green);
+            text-decoration: none;
+            border: 1px solid var(--neon-green);
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-link:hover {
+            background: var(--neon-green);
+            color: var(--darker-bg);
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.8);
+        }
+
+        /* Skills Section */
+        .skills {
+            margin-bottom: 60px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .skill-category {
+            background: var(--card-bg);
+            border: 1px solid var(--neon-cyan);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.15);
+            transition: all 0.3s;
+        }
+
+        .skill-category:hover {
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+            border-color: var(--neon-green);
+            transform: translateY(-5px);
+        }
+
+        .skill-title {
+            color: var(--neon-green);
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            color: var(--text-light);
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .skill-list li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: var(--neon-cyan);
+        }
+
+        /* Experience Section */
+        .experience {
+            margin-bottom: 60px;
+        }
+
+        .exp-item {
+            background: var(--card-bg);
+            border-left: 4px solid var(--neon-cyan);
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .exp-item:hover {
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+            border-left-color: var(--neon-green);
+        }
+
+        .exp-title {
+            font-size: 1.3em;
+            color: var(--neon-cyan);
+            margin-bottom: 5px;
+        }
+
+        .exp-company {
+            color: var(--neon-green);
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            text-shadow: 0 0 5px rgba(57, 255, 20, 0.4);
+        }
+
+        .exp-date {
+            color: var(--text-light);
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+
+        .exp-desc {
+            list-style: none;
+        }
+
+        .exp-desc li {
+            color: var(--text-light);
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .exp-desc li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--neon-cyan);
+        }
+
+        /* Certifications */
+        .certifications {
+            margin-bottom: 60px;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .cert-badge {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(57, 255, 20, 0.15));
+            border: 2px solid var(--neon-cyan);
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .cert-badge:hover {
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+            border-color: var(--neon-green);
+            transform: scale(1.05);
+        }
+
+        .cert-name {
+            color: var(--neon-green);
+            font-weight: bold;
+            font-size: 0.95em;
+        }
+
+        /* Call to Action */
+        .cta {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(57, 255, 20, 0.1));
+            border: 2px solid var(--neon-cyan);
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+
+        .cta h2 {
+            font-size: 2em;
+            color: var(--neon-cyan);
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-green));
+            color: var(--darker-bg);
+            padding: 15px 40px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1em;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+            text-decoration: none;
+        }
+
+        .cta-button:hover {
+            box-shadow: 0 0 40px rgba(0, 212, 255, 0.8), 0 0 60px rgba(57, 255, 20, 0.4);
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid var(--neon-cyan);
+            color: var(--text-light);
+            font-size: 0.9em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5em; }
+            .subtitle { font-size: 1.1em; }
+            .contact-info { gap: 15px; }
+            .project-grid { grid-template-columns: 1fr; }
+            .skills-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>> SAREM MAHMOOD</h1>
+            <p class="subtitle"># Cybersecurity & IT Professional</p>
+            <div class="contact-info">
+                <a href="mailto:smwork233@gmail.com">📧 Email</a>
+                <a href="https://github.com/ProfBisca29" target="_blank">🔗 GitHub</a>
+                <a href="https://www.linkedin.com/in/sarem-mahmood" target="_blank">💼 LinkedIn</a>
+            </div>
+        </header>
+
+        <section class="about">
+            <h2>// ABOUT ME</h2>
+            <p>
+                Computer Science & Information Security student at CUNY John Jay College with a relentless drive to master cybersecurity. I'm passionate about securing systems, hunting threats, and building resilient defenses. My expertise spans vulnerability assessment, threat detection, incident response, and compliance—with hands-on experience at Sony and Paramount. I believe in continuous learning, simulating real-world attacks, and growing 1% every day. Currently preparing for a summer 2026 internship at Grant Thornton in Cyber & Privacy Consulting.
+            </p>
+        </section>
+
+        <section class="projects">
+            <h2 class="section-title">// FEATURED PROJECTS</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <div class="project-name">🛡️ Vendor Risk Scanner</div>
+                    <p class="project-desc">AI-integrated tool that scores domains across SSL/TLS, threat intelligence, attack surface, breach history, and email security using weighted risk models. Outputs structured risk reports with VirusTotal & Shodan integration.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Flask</span>
+                        <span class="tech-tag">Risk Assessment</span>
+                    </div>
+                    <a href="https://github.com/ProfBisca29/Vendor-Risk-Scanner-" target="_blank" class="project-link">View Project →</a>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-name">🔐 PII Detection Pipeline</div>
+                    <p class="project-desc">Python-based security tool detecting and redacting 10+ PII entity types with SHA-256 cryptographic verification. Generates JSON forensic reports with audit logs for incident response workflows.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Cryptography</span>
+                        <span class="tech-tag">Forensics</span>
+                    </div>
+                    <a href="https://github.com/ProfBisca29/Secure-PII-Detection-Redaction-Pipeline" target="_blank" class="project-link">View Project →</a>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-name">🌐 Network Packet Sniffer</div>
+                    <p class="project-desc">Python network analysis tool that identifies protocols (TCP/UDP), retrieves source/destination ports, and captures sequence numbers for network traffic analysis and threat detection.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Networking</span>
+                        <span class="tech-tag">Pcap</span>
+                    </div>
+                    <a href="https://github.com/ProfBisca29/network-packet-sniffer" target="_blank" class="project-link">View Project →</a>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-name">🔍 Suricata IDS Setup</div>
+                    <p class="project-desc">Blue team intrusion detection system using Suricata for live traffic capture and threat alerting. Monitors network activity and detects potential threats in real-time.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Suricata</span>
+                        <span class="tech-tag">IDS/IPS</span>
+                        <span class="tech-tag">Blue Team</span>
+                    </div>
+                    <a href="https://github.com/ProfBisca29/Suricata-Live-Network-Traffic-Capture-Intrusion-Detection-System-IDS-Setup" target="_blank" class="project-link">View Project →</a>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-name">🎯 RDP-SENTRY Tool</div>
+                    <p class="project-desc">Lightweight C++ tool for automating Active Directory account management and Remote Desktop troubleshooting. Reduced issue resolution time by 20% and improved user satisfaction.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">C++</span>
+                        <span class="tech-tag">Windows Admin</span>
+                        <span class="tech-tag">Automation</span>
+                    </div>
+                    <a href="https://github.com/ProfBisca29/RDP-SENTRY-Custom-made-Tool-using-C-" target="_blank" class="project-link">View Project →</a>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-name">📊 Cyber Threat Analyzer</div>
+                    <p class="project-desc">C++ CLI tool that analyzes URL lists (simulated logs) to detect suspicious or tracking domains. Logs and counts blocked requests for security monitoring.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">C++</span>
+                        <span class="tech-tag">CLI</span>
+                        <span class="tech-tag">Threat Detection</span>
+                    </div>
+                    <a href="https://github.com/ProfBisca29/Cyber-Threat-Analyzer" target="_blank" class="project-link">View Project →</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="experience">
+            <h2 class="section-title">// PROFESSIONAL EXPERIENCE</h2>
+
+            <div class="exp-item">
+                <div class="exp-title">Information Security Risk & Compliance Analyst</div>
+                <div class="exp-company">Sony Corporation of America</div>
+                <div class="exp-date">November 2025 – Present | New York City, NY</div>
+                <ul class="exp-desc">
+                    <li>Integrated GRC + Technical/General Security Risk assessment and remediation</li>
+                    <li>Third Party Risk Management (TPRM) and Regulatory Compliance</li>
+                    <li>Coordinated cross-functional compliance efforts with zero missed deadlines</li>
+                </ul>
+            </div>
+
+            <div class="exp-item">
+                <div class="exp-title">Cybersecurity & Privacy Analyst</div>
+                <div class="exp-company">Paramount Global</div>
+                <div class="exp-date">May 2025 – November 2025 | New York City, NY</div>
+                <ul class="exp-desc">
+                    <li>Supported enterprise-wide migration of modern Consent Management Platform (CMP) across 15+ digital properties, reducing compliance gaps by 30%</li>
+                    <li>Integrated privacy and security principles (data minimization, least disclosure) aligned with CCPA, GDPR, and internal compliance frameworks</li>
+                    <li>Conducted 100+ privacy, security risk, and audit assessments across third-party integrations and vendor relationships</li>
+                    <li>Identified 40+ actionable risk findings and collaborated with Legal, Engineering, and Product teams to drive remediation</li>
+                    <li>Standardized privacy and security controls, improving assessment turnaround time by 25%</li>
+                </ul>
+            </div>
+
+            <div class="exp-item">
+                <div class="exp-title">Security Analyst Intern (Incoming)</div>
+                <div class="exp-company">Grant Thornton</div>
+                <div class="exp-date">Summer 2026 | Cyber & Privacy Consulting</div>
+                <ul class="exp-desc">
+                    <li>Applying skills in cybersecurity consulting and risk management</li>
+                    <li>Focus: Threat assessment, compliance frameworks, and security architecture</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="skills">
+            <h2 class="section-title">// TECHNICAL SKILLS</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="skill-title">Security Tools</div>
+                    <ul class="skill-list">
+                        <li>Splunk & SIEM</li>
+                        <li>Nessus Vulnerability Scanner</li>
+                        <li>Burp Suite & OWASP</li>
+                        <li>Metasploit Framework</li>
+                        <li>Wireshark & Snort</li>
+                        <li>Suricata IDS/IPS</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-title">Programming</div>
+                    <ul class="skill-list">
+                        <li>Python (Security Tools)</li>
+                        <li>C++ (Systems & CLI)</li>
+                        <li>JavaScript (Web Security)</li>
+                        <li>Bash & PowerShell</li>
+                        <li>SQL</li>
+                        <li>Git & GitHub</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-title">Cloud & Systems</div>
+                    <ul class="skill-list">
+                        <li>AWS Security Hub</li>
+                        <li>Linux (Kali/Ubuntu)</li>
+                        <li>Windows & macOS Admin</li>
+                        <li>TCP/IP & Networking</li>
+                        <li>VPNs & Firewalls</li>
+                        <li>Active Directory</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-title">Compliance & Frameworks</div>
+                    <ul class="skill-list">
+                        <li>NIST Cybersecurity Framework</li>
+                        <li>ISO 27001</li>
+                        <li>SOC 2 & CIS Controls</li>
+                        <li>GDPR & CCPA</li>
+                        <li>HIPAA & PCI-DSS</li>
+                        <li>Risk Assessment</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="certifications">
+            <h2 class="section-title">// CERTIFICATIONS</h2>
+            <div class="cert-grid">
+                <div class="cert-badge">
+                    <div class="cert-name">CompTIA Security+</div>
+                </div>
+                <div class="cert-badge">
+                    <div class="cert-name">ISC² Certified in Cybersecurity (CC)</div>
+                </div>
+                <div class="cert-badge">
+                    <div class="cert-name">Proofpoint AI Security Specialist</div>
+                </div>
+                <div class="cert-badge">
+                    <div class="cert-name">TestOut Security Pro</div>
+                </div>
+                <div class="cert-badge">
+                    <div class="cert-name">Blue Team Junior Analyst</div>
+                </div>
+                <div class="cert-badge">
+                    <div class="cert-name">CISM (In Progress)</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <h2>// READY TO COLLABORATE?</h2>
+            <p style="margin-bottom: 20px;">Let's build secure systems together. Reach out for opportunities in cybersecurity, threat detection, or security consulting.</p>
+            <a href="mailto:smwork233@gmail.com" class="cta-button">START A CONVERSATION →</a>
+        </section>
+
+        <footer>
+            <p>© 2026 Sarem Mahmood | Cybersecurity Professional | Built with Security in Mind</p>
+            <p style="margin-top: 10px; opacity: 0.7;">Portfolio v1.0 | Last Updated: April 2026</p>
+        </footer>
+    </div>
+</body>
+</html>
